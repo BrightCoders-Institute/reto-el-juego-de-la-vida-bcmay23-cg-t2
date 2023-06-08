@@ -18,6 +18,7 @@ class GameLife
 
     def next_generation(tablero)
         indice_celula_viva = []
+        celulas_vivas_vecinas = 0
 
         tablero.each_with_index do |row, i|
             row.each_with_index do |column, j|
@@ -28,42 +29,117 @@ class GameLife
         end
 
         indice_celula_viva.each do |i, j|
-            colum = j
-            if i < tablero.length - 1
-            puts "i: #{i} j: #{j}"
-                if tablero[i][colum + 1 ] == ("." || nil)
-                    puts "#{tablero[i][j+1]}"
-                    if tablero[i][colum - 1] == ("." || nil)
-                        puts "#{tablero[i][j-1]}"
-                        if tablero[i+1][j] == ("." || nil)
-                            puts "#{tablero[i+1][j]}"
-                            if tablero[i-1][j] == ("." || nil)
-                                puts "#{tablero[i-1][j]}"
-                                if tablero[i+1][j+1] == ("." || nil)
-                                    puts "#{tablero[i+1][j+1]}"
-                                    if tablero[i-1][j-1] == ("." || nil)
-                                        puts "#{tablero[i-1][j-1]}"
-                                        if tablero[i+1][j-1] == ("." || nil)
-                                            puts "#{tablero[i+1][j-1]}"
-                                            if tablero[i-1][j+1] == ("." || nil)
-                                                puts "#{tablero[i-1][j+1]}"
-                                                tablero[i][j] = "."
-                                            end
-                                        end
-                                    end
-                                end
-                            end
-                        end
+            if i <= tablero.length - 1
+
+                if i == 3
+                    if tablero[i][j+ 1 ] == ("*")
+                        celulas_vivas_vecinas+= 1
                     end
+                    if tablero[i][j - 1] == ("*")
+                        celulas_vivas_vecinas+= 1
+                    end
+                    if tablero[i-1][j] == ("*")
+                        celulas_vivas_vecinas+= 1
+                    end
+                    if tablero[i-1][j-1] == ("*")
+                        celulas_vivas_vecinas+= 1
+                    end
+                    if tablero[i-1][j+1] == ("*")
+                        celulas_vivas_vecinas+= 1
+                    end
+                    if celulas_vivas_vecinas < 2
+                        tablero[i][j] = "."
+                    end
+                    if celulas_vivas_vecinas > 3
+                        tablero[i][j] = "."
+                    end
+                    if celulas_vivas_vecinas == (2 || 3)
+                        tablero[i][j] = "*"
+                    end
+
+                    if celulas_vivas_vecinas < 2
+                        tablero[i][j] = "."
+                    end
+                    if celulas_vivas_vecinas > 3
+                        tablero[i][j] = "."
+                    end
+                    if celulas_vivas_vecinas == (2 || 3)
+                        tablero[i][j] = "*"
+                    end
+                end
+                if j == 0
+                    if tablero[i][j + 1 ] == ("*")
+                        celulas_vivas_vecinas+= 1
+                    end
+                    if tablero[i+1][j] == ("*")
+                        celulas_vivas_vecinas+= 1
+                    end
+                    if tablero[i-1][j] == ("*")
+                        celulas_vivas_vecinas+= 1
+                    end
+                    if tablero[i+1][j+1] == ("*")
+                        celulas_vivas_vecinas+= 1
+                    end
+                    if tablero[i-1][j+1] == ("*")
+                        celulas_vivas_vecinas+= 1
+                    end
+                    
+                    if celulas_vivas_vecinas < 2
+                    
+                        tablero[i][j] = "."
+                    
+                    end
+                    
+                    if celulas_vivas_vecinas > 3
+                    
+                        tablero[i][j] = "."
+                    
+                    end
+                    
+                    if celulas_vivas_vecinas == (2 || 3)
+                        tablero[i][j] = "*"
+                    end
+                end
+            puts "i: #{i} j: #{j}"
+                if tablero[i][j+ 1 ] == ("*")
+                    celulas_vivas_vecinas+= 1
+                end
+                if tablero[i][j - 1] == ("*")
+                    celulas_vivas_vecinas+= 1
+                end
+                if tablero[i+1][j] == ("*")
+                    celulas_vivas_vecinas+= 1
+                end
+                if tablero[i-1][j] == ("*")
+                    celulas_vivas_vecinas+= 1
+                end
+                if tablero[i+1][j+1] == ("*")
+                    celulas_vivas_vecinas+= 1
+                end
+                if tablero[i-1][j-1] == ("*")
+                    celulas_vivas_vecinas+= 1
+                end
+                if tablero[i+1][j-1] == ("*")
+                    celulas_vivas_vecinas+= 1
+                end
+                if tablero[i-1][j+1] == ("*")
+                    celulas_vivas_vecinas+= 1
+                end
+                if celulas_vivas_vecinas < 2
+                    tablero[i][j] = "."
+                end
+                if celulas_vivas_vecinas > 3
+                    tablero[i][j] = "."
+                end
+                if celulas_vivas_vecinas == (2 || 3)
+                    tablero[i][j] = "*"
                 end
             end
         end
 
-
         tablero.each_with_index do |row, i|
             puts "#{tablero[i].join(" ")}"
         end
-
     end
 end
 
