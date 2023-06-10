@@ -11,7 +11,7 @@ class GameLife
   def start_game
     board = Array.new(@row) { Array.new(@column, false) }
     5.times do
-      row = Random.new.rand(0..@row - 1)
+    row = Random.new.rand(0..@row - 1)
       column = Random.new.rand(0..@column - 1)
       board[row][column] = true
     end
